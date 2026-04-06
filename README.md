@@ -1,6 +1,6 @@
 # Raspberry Pi 5 + Hailo AI: Servidor LLM Local con Ollama y Open WebUI
 
-Este proyecto detalla la configuración paso a paso de una **Raspberry Pi 5** equipada con el **AI HAT (Hailo)** también aplica para el **AI HAT+2** para ejecutar Modelos de Lenguaje de Gran Escala (LLMs) de forma local, aprovechando el NPU para un rendimiento optimizado.
+Este proyecto esta dirigido para el asistente virtual local de la universidad Ibero Puebla, el cual se encuentra en la fase de software, detalla la configuración paso a paso de una **Raspberry Pi 5** equipada con el **AI HAT (Hailo)** también aplica para el **AI HAT+2** para ejecutar Modelos de Lenguaje de Gran Escala (LLMs) de forma local, aprovechando el NPU para un rendimiento optimizado.
 
 ---
 
@@ -11,10 +11,9 @@ Este proyecto detalla la configuración paso a paso de una **Raspberry Pi 5** eq
 * [AI HAT o AI HAT+ 2 (Hailo)]
 
 ### Accesorios Adicionales
-* [Tarjeta Micro SD] (Recomendado 64GB o superior)
+* [Tarjeta Micro SD] 
 * [Fuente de alimentación USB-C (27W)] específica para Pi 5.
 * Teclado, Ratón y Monitor HDMI.
-* [Carcasa Pi 5] y [Extensor de altura]
 ---
 
 ### 1. Habilitar PCIe Gen 3
