@@ -53,6 +53,7 @@ Deberías ver una salida con los detalles del dispositivo Hailo-10.
 Descarga el paquete Debian específico para la arquitectura ARM64 de la Pi 5:
 
 1.[Haz clic aquí para descargar la versión 5.1.1.](https://dev-public.hailo.ai/2025_12/Hailo10/hailo_gen_ai_model_zoo_5.1.1_arm64.deb)
+
 2.Instálalo desde la terminal (asumiendo que está en la carpeta de Descargas):
 ```bash
 cd ~/Downloads
