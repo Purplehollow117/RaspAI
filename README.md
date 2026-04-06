@@ -28,7 +28,7 @@ sudo raspi-config
 
 5. Usa la tecla Tab para ir a Finish, presiona Enter y selecciona Yes para reiniciar.
 
-###2. Actualizar Firmware y Sistema
+### 2. Actualizar Firmware y Sistema
 Una vez de vuelta en el escritorio, asegúrate de tener la última versión del firmware y del sistema operativo:
 ```bash
 sudo apt update
@@ -36,20 +36,20 @@ sudo apt full-upgrade -y
 sudo rpi-eeprom-update -a
 sudo reboot
 ```
-###3. Instalar dependencias
+### 3. Instalar dependencias
 Instalaremos los controladores necesarios para el chip Hailo. El sistema se reiniciará automáticamente al finalizar:
 ```bash
 sudo apt install dkms
 sudo apt install hailo-h10-all
 sudo reboot
 ```
-###4. Verificar instalación
+### 4. Verificar instalación
 Para confirmar que el hardware de Hailo se reconoce correctamente, ejecuta:
 ```bash
 hailortcli fw-control identify
 ```
 Deberías ver una salida con los detalles del dispositivo Hailo-10.
-###5. Instalar Hailo Model Zoo (Gen AI)
+### 5. Instalar Hailo Model Zoo (Gen AI)
 Descarga el paquete Debian específico para la arquitectura ARM64 de la Pi 5:
 
 1.[Haz clic aquí para descargar la versión 5.1.1.](https://dev-public.hailo.ai/2025_12/Hailo10/hailo_gen_ai_model_zoo_5.1.1_arm64.deb)
@@ -59,15 +59,15 @@ cd ~/Downloads
 sudo dpkg -i hailo_gen_ai_model_zoo_5.1.1_arm64.deb
 ```
 
-##Iniciar Ollama (Servidor y Modelos)
+## Iniciar Ollama (Servidor y Modelos)
 Ahora arrancaremos el servidor hailo-ollama e instalaremos los modelos (LLMs).
 
-###1. Arrancar el Servidor
+### 1. Arrancar el Servidor
 Inicia el servicio en una terminal:
 ```bash
 hailo-ollama
 ```
-###2. Listar e Instalar modelos
+### 2. Listar e Instalar modelos
 Abre una nueva terminal (sin cerrar la anterior) para consultar los modelos disponibles:
 ```bash
 curl --silent http://localhost:8000/hailo/v1/list
@@ -79,7 +79,7 @@ curl --silent http://localhost:8000/api/pull \
      -H 'Content-Type: application/json' \
      -d '{ "model": "qwen2:1.5b", "stream" : true }'
 ```
-###3. Prueba rápida de chat
+### 3. Prueba rápida de chat
 Puedes verificar que todo funciona enviando una pregunta vía API:
 ```bash
 curl --silent http://localhost:8000/api/chat \
@@ -90,7 +90,7 @@ curl --silent http://localhost:8000/api/chat \
 
 Open WebUI proporciona una interfaz gráfica similar a ChatGPT para interactuar con tus modelos locales de forma sencilla.
 
-###1. Preparar Docker
+### 1. Preparar Docker
 Primero, eliminamos cualquier instalación previa de Docker para evitar conflictos:
 ```bash
 sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-doc podman-docker containerd runc | cut -f1)
@@ -114,7 +114,7 @@ EOF
 sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
-##2. Configurar permisos
+## 2. Configurar permisos
 Añade tu usuario al grupo Docker para ejecutarlo sin sudo:
 ```bash
 sudo groupadd docker
@@ -122,14 +122,14 @@ sudo usermod -aG docker $USER
 newgrp docker
 ```
 (Puedes verificar con docker run hello-world)
-##3. Desplegar el contenedor de Open WebUI
+## 3. Desplegar el contenedor de Open WebUI
 Descarga la imagen y ejecuta el contenedor vinculándolo al servidor de Hailo:
 ```bash
 docker pull ghcr.io/open-webui/open-webui:main
 
 docker run -d -e OLLAMA_BASE_URL=[http://127.0.0.1:8000](http://127.0.0.1:8000) -v open-webui:/app/backend/data --name open-webui --network=host --restart always ghcr.io/open-webui/open-webui:main
 ```
-##4. Acceso
+## 4. Acceso
 El contenedor puede tardar un minuto en inicializarse. Puedes seguir el progreso con:
 ```bash
 docker logs open-webui -f
